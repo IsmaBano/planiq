@@ -1,0 +1,48 @@
+<%- include("header") -%>
+<div class="flex ">
+<div class="bg-black min-h[800px] md:w-[400px] p-2 mx-[1%] my-[50px] ">
+  <p class="text-white text-[15px] p-2 m-[7%] md:text-[30px]"><a href="/">List Titles </a></p>
+  <hr>
+  <div>
+  <% for(let i=1;i<titles.length;i++){ %>
+    <form action="/deletelist" method="post">
+<p class="bg-[#5c1b5c] min-h-[50px] m-[7%] p-4 flex rounded-[5px] text-white md:text-[17px] text-[10px]">
+    <input type="checkbox" class="peer mr-[10%]" name="checkbox" value=" <%= titles[i]._id %>"  onchange="this.form.submit()" >
+    <input type="hidden" name="listname" value="<%= listtitle %>">
+    <a href="/<%=titles[i].name %>"><%= titles[i].name %> </a> </p>
+  <% } %>
+  </form>
+  </div>
+  <form action="/titlelist" method="post" class="text-center ">
+    <input type="text" text="bg-black" name="title" placeholder=" Enter list to be found " autocomplete="off" class="text-center m-3 text-white bg-transparent font-[200]  h-[60px] rounded-[5px] w-[80%] ">
+    <button class="bg-[#5c1b5c] min-h-[50px] w-[50px] text-white rounded-full font-bold mx-2 my-2" value="titlelist" name="" type="submit">+</button>
+</form>
+</div>
+
+
+
+
+<div class="min-h-[400px] w-[80%] md:mx-[10%] mx-[5%] my-[50px]  py-6 md:text-[17px] text-[10px] text-white bg-black" >
+
+  <% nitem.forEach (function(item){ %>
+    <form action="/delete" method="post">
+    <div class="bg-[#5c1b5c] min-h-[50px] m-[7%] p-4 flex rounded-[5px] ">
+     <input type="checkbox" class="peer " name="checkbox" value=" <%= item._id %>"  onchange="this.form.submit()" >
+     <input type="hidden" name="listname" value="<%= listtitle %>">
+        <p class="ml-4 peer-checked:line-through "  > <%= item.name %>  </p>
+    </div>
+    </form>
+  <% }) %>
+
+
+ <form action="/" method="post" class="text-center ">
+    <input type="text" text="bg-black" name="newitem" placeholder=" Add New Item " autocomplete="off" class="text-center bg-transparent font-[200]  h-[60px] rounded-[5px] w-[80%] ">
+    <button class="bg-[#5c1b5c] min-h-[50px] w-[50px] text-white rounded-full font-bold mx-2" value="<%=listtitle %>" name="button" type="submit">+</button>
+</form>
+
+</div>
+
+
+</div>
+
+<%- include("footer") -%>
