@@ -3,7 +3,9 @@ const bodyParser =require("body-parser");
 const mongoose =require("mongoose");
 const app = express();
 const _=require("lodash");
-
+ 
+const dotenv=require('dotenv').config();
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
 app.set('view engine', 'ejs');
 const path = require("path");
 const { log } = require("console");
@@ -11,7 +13,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
  
-mongoose.connect("mongodb+srv://admin123:123admin@cluster0.zfxhnys.mongodb.net/todoListDB", {useNewUrlParser: true , useUnifiedTopology: true,});
+mongoose.connect(process.env.MONGODB_URI).then(() => console.log('Database connected successfully'))
+.catch(err => console.error('Database connection error:', err));;
 const itemsSchema ={
     name:String
 };

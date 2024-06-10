@@ -1,2 +1,1 @@
-item =req.body.newitem;
-    // items.push(item);
+const dotenv=require('dotenv').config();
