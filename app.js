@@ -5,7 +5,7 @@ const app = express();
 const _=require("lodash");
  
 const dotenv=require('dotenv').config();
-console.log('MONGODB_URI:', process.env.MONGODB_URI);
+
 app.set('view engine', 'ejs');
 const path = require("path");
 const { log } = require("console");
